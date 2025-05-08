@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Phone/Filter Selector</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
+  font-family: 'Roboto', sans-serif; /* Use Roboto font for the entire page */
 }
 .content-wrapper {
   display: flex;
@@ -18,10 +20,10 @@ body {
 header {
   display: flex;
   justify-content: flex-end;
-  font-weight: bold;
+  font-weight: 700; /* Use bold weight (700) */
   font-size: 18px;
-  padding: 10px 20px; /* adds spacing above and side padding */
-  margin-top: 10px;   /* space above header (not flush to top) */
+  padding: 10px 20px; 
+  margin-top: 10px;
 }
 .content {
   flex: 1;
@@ -41,6 +43,8 @@ footer {
   font-size: 14px;
   text-align: center;
   color: #666;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Normal weight for footer */
 }
   </style>
 </head>
@@ -173,7 +177,7 @@ footer {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = today.toLocaleDateString('en-US', options);
     document.getElementById('copyright').textContent =
-      `© ${formattedDate} by Zalman Stock — Just for you`;
+      `© ${formattedDate} by Zalman Stock — just for you`;
   </script>
 </body>
 </html>

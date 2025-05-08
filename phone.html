@@ -6,7 +6,21 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 40px;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .content {
+      flex: 1;
+    }
+    header {
+      display: flex;
+      justify-content: flex-end;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 20px;
     }
     .section {
       margin-top: 20px;
@@ -16,20 +30,36 @@
       padding: 10px 15px;
       font-size: 16px;
     }
+    footer {
+      margin-top: auto;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
+      text-align: center;
+      color: #666;
+    }
   </style>
 </head>
-<body>
 
-  <h2>Are you looking to:</h2>
-  <div id="start">
-    <button onclick="havePhone()">Filter a phone you already have</button>
-    <button onclick="buyPhone()">Buy a new phone</button>
+<body>
+  <header>בס״ד</header>
+
+  <div class="content">
+    <h2>Are you looking to:</h2>
+    <div id="start">
+      <button onclick="havePhone()">Filter a phone you already have</button>
+      <button onclick="buyPhone()">Buy a new phone</button>
+    </div>
+
+    <div class="section" id="step2"></div>
+    <div class="section" id="step3"></div>
+    <div class="section" id="step4"></div>
+    <div class="section" id="extra"></div>
   </div>
 
-  <div class="section" id="step2"></div>
-  <div class="section" id="step3"></div>
-  <div class="section" id="step4"></div>
-  <div class="section" id="extra"></div>
+  <footer>
+    <span id="copyright"></span>
+  </footer>
 
   <script>
     function clearSteps(startFrom = 2) {
@@ -133,7 +163,13 @@
         </ul>
       `;
     }
-  </script>
 
+    // Footer date
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString('en-US', options);
+    document.getElementById('copyright').textContent =
+      `© 2025 by Zalman Stock — just for you (generated on ${formattedDate})`;
+  </script>
 </body>
 </html>

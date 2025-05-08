@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phone/Filter Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Are you looking to:</h2>
+  <div id="start">
+    <button onclick="havePhone()">Filter a phone you already have</button>
+    <button onclick="buyPhone()">Buy a new phone</button>
+  </div>
+
+  <div class="section" id="step2"></div>
+  <div class="section" id="step3"></div>
+  <div class="section" id="step4"></div>
+  <div class="section" id="extra"></div>
+
+  <script>
+    function clearSteps(startFrom = 2) {
+      for (let i = startFrom; i <= 4; i++) {
+        document.getElementById(`step${i}`).innerHTML = '';
+      }
+      document.getElementById('extra').innerHTML = '';
+    }
+
+    function havePhone() {
+      clearSteps(2);
+      document.getElementById('step2').innerHTML = `
+        <h3>What type of phone do you have?</h3>
+        <button onclick="hasPhoneType('apple')">Apple (iPhone)</button>
+        <button onclick="hasPhoneType('android')">Android (Samsung, Pixel, etc.)</button>
+      `;
+    }
+
+    function hasPhoneType(type) {
+      clearSteps(3);
+      if (type === 'apple') {
+        document.getElementById('step3').innerHTML = `
+          <h3>Apple Filter Options</h3>
+          <p>iPhones come with built-in <strong>Screen Time</strong> to help manage apps, screen time, and websites. You can either filter browsing or remove the Safari browser completely.</p>
+          <p>If you remove Safari, make sure to also block web content in the <strong>Content Restrictions</strong> settings. Otherwise, apps like Mail and Messages might still open links using their own in-app browsers, which bypass the restrictions.</p>
+          <p>Third-party filters like MBsmart are also supported on iPhones, but are often less necessary because of Apple's built-in tools.</p>
+        `;
+      } else {
+        document.getElementById('step3').innerHTML = `
+          <h3>Android Filter Options</h3>
+          <p>Android phones come with free <strong>Google Family Link</strong> for managing apps, screen time, and websites.</p>
+          <p>However, some apps come with built-in browsers that bypass Family Link filters, and the Google app itself cannot be blocked.</p>
+          <p>For stronger filtering, consider using a third-party solution like <strong>MBsmart</strong> to add an extra layer of security and avoid bypasses.</p>
+        `;
+        showMBsmart();
+      }
+    }
+
+    function buyPhone() {
+      clearSteps(2);
+      document.getElementById('step2').innerHTML = `
+        <h3>Which type of phone are you interested in?</h3>
+        <button onclick="showPhoneInfo('apple')">Apple (iPhone)</button>
+        <button onclick="showPhoneInfo('samsung')">Samsung</button>
+        <button onclick="showPhoneInfo('pixel')">Google Pixel</button>
+      `;
+    }
+
+    function showPhoneInfo(type) {
+      clearSteps(3);
+      let content = '';
+
+      if (type === 'apple') {
+        content = `
+          <h3>Apple (iPhone 16 - 128GB)</h3>
+          <p><strong>Price:</strong> $829.00 (unlocked)</p>
+          <p><strong>Storage:</strong> 5GB free iCloud space; paid plans start at $0.99/month for 50GB.</p>
+          <p><strong>Filtering:</strong> iPhones include <strong>Screen Time</strong>, which allows you to block or limit websites and apps. You can also fully block Safari or enable filtered browsing.</p>
+          <p>If you remove Safari, be sure to block websites under Content Restrictions in the settings. Otherwise, apps like Mail and Messages may still open links through their own in-app browsers, bypassing your filters.</p>
+          <p>Third-party filters like MBsmart can also be used, but are generally not needed due to the strong built-in controls.</p>
+        `;
+      } else if (type === 'samsung') {
+        content = `
+          <h3>Samsung Galaxy S25 - 128GB (Unlocked)</h3>
+          <p><strong>Price:</strong> $719.99</p>
+          <p><strong>Storage:</strong> 15GB free with Google.</p>
+          <p><strong>Filtering:</strong> Includes <strong>Google Family Link</strong> for app and web filtering.</p>
+          <p>However, some apps include built-in browsers that bypass filters, and the Google app itself can’t be blocked.</p>
+          <p><strong>Tip:</strong> If you're concerned about spending nearly $800 on a phone that might be slowed down by filtering, consider the <strong>Samsung A35</strong> instead (~$399.99). It includes an SD card slot and offers better value when using filters like MBsmart.</p>
+        `;
+        showMBsmart();
+      } else if (type === 'pixel') {
+        content = `
+          <h3>Google Pixel 9 - 128GB (Unlocked)</h3>
+          <p><strong>Price:</strong> $599.00</p>
+          <p><strong>Storage:</strong> 15GB free Google Drive + <strong>unlimited Google Photos storage</strong>.</p>
+          <p><strong>Filtering:</strong> Includes <strong>Google Family Link</strong> for app and web filtering.</p>
+          <p>However, some apps include built-in browsers that bypass filters, and the Google app itself can’t be blocked.</p>
+        `;
+        showMBsmart();
+      }
+
+      content += `
+        <p><em>Note:</em> These phones and prices are listed just as examples to help you see what's on the market and compare options to your budget.</p>
+      `;
+
+      document.getElementById('step3').innerHTML = content;
+    }
+
+    function showMBsmart() {
+      document.getElementById('extra').innerHTML = `
+        <h3>MBsmart Filter Features</h3>
+        <p><strong>MBsmart</strong> is a robust filter that works on both Android and iPhone. It operates as a whitelist-based filter, meaning all websites and apps are blocked unless allowed.</p>
+        <ul>
+          <li>You can request sites or apps to be approved. If a site is blocked, MBsmart lets you know, and you can email TAG directly from the app to request approval.</li>
+          <li>You can open kosher sites without images to boost productivity.</li>
+          <li>The App Store can be opened temporarily (for a few minutes), allowing you to install apps, which will then be checked automatically.</li>
+          <li>Blocked apps can be requested to be filtered and allowed. Many are allowed after removing ads or other concerns. If not, they remain blocked.</li>
+          <li>All requests require a password. You can keep the password to prevent children from requesting apps or sites, or give it to them depending on age and trust level.</li>
+          <li>You can choose to trust MBsmart/TAG's judgment or stay in full control yourself.</li>
+        </ul>
+      `;
+    }
+  </script>
+
+</body>
+</html>

@@ -4,24 +4,29 @@
   <meta charset="UTF-8">
   <title>Phone/Filter Selector</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    .content {
-      flex: 1;
-    }
-    header {
-      display: flex;
-      justify-content: flex-end;
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+header {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px; /* adds spacing above and side padding */
+  margin-top: 10px;   /* space above header (not flush to top) */
+}
+.content {
+  flex: 1;
+  padding: 20px 40px; /* content padding */
+}
     .section {
       margin-top: 20px;
     }
@@ -30,20 +35,19 @@
       padding: 10px 15px;
       font-size: 16px;
     }
-    footer {
-      margin-top: auto;
-      border-top: 1px solid #ccc;
-      padding: 10px;
-      font-size: 14px;
-      text-align: center;
-      color: #666;
-    }
+footer {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+}
   </style>
 </head>
 
 <body>
+<div class="content-wrapper">
   <header>בס״ד</header>
-
   <div class="content">
     <h2>Are you looking to:</h2>
     <div id="start">
